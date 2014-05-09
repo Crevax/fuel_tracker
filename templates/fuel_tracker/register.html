@@ -1,0 +1,24 @@
+{% extends 'fuel_tracker/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block main_content %}
+    <h1>Create an Account</h1>
+
+    {% if registered %}
+        <strong>Thank you for registering!</strong>
+        <a href="{% url 'main.index' %}">Return to the homepage.</a><br />
+    {% else %}
+        <strong>Register here!</strong><br />
+
+        <form id="user_form" method="post" action="{% url 'main.register' %}" enctype="multipar/form-data">
+
+            {% csrf_token %}
+
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+            <input type="submit" name="submit" value="Register" />
+        </form>
+    {% endif %}
+{% endblock %}

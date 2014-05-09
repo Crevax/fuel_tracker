@@ -37,3 +37,4 @@ Thumbs.db
 # Django Files #
 ################
 *.pyc
+local_settings.py

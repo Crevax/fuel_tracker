@@ -1,0 +1,11 @@
+{% extends 'fuel_tracker/base.html' %}
+
+{% block title %}Vehicles{% endblock %}
+
+{% block main_content %}
+    <ul class="actions">
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'vehicle.add' %}">New Vehicle</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'fuel_tracker/base.html' %}
+
+{% block title %}Add Vehicle{% endblock %}
+
+{% block main_content %}
+    <h1>New Vehicle</h1>
+
+    <form id="vehicle_form" method="post" action="{% url 'vehicle.add' %}">
+
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+            <br />
+        {% endfor %}
+
+        <input type ="submit" name="submit" value="Add Vehicle" />
+    </form>
+{% endblock %}

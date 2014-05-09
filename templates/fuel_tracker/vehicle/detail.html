@@ -1,0 +1,38 @@
+{% extends 'fuel_tracker/base.html' %}
+
+{% block title %}{{ vehicle.nickname }}{% endblock %}
+
+{% block main_content %}
+    {% if vehicle %}
+        <h1>{{ vehicle.nickname }}</h1>
+        <p>{{ vehicle.make }}</p>
+        <p>{{ vehicle.model }}</p>
+        <p>{{ vehicle.year }}</p>
+        <p>{{ vehicle.base_miles }}</p>
+
+        <h2>Milage Info</h2>
+        <p>Total Travelled: {{ miles.miles_traveled__sum }}</p>
+        <p>Longest Tank: {{ miles.miles_traveled__max }}</p>
+        <p>Shortest Tank: {{ miles.miles_traveled__min }}</p>
+        <p>Average: {{ miles.miles_traveled__avg|floatformat }}</p>
+
+        <h2>Gas Info</h2>
+        <p>Total Spent: {{ gas_info.total_cost }}</p>
+        <p>Average Price: ${{ gas_info.price_per_gallon__avg|floatformat:2 }}</p>
+        <p>Highest Price: ${{ gas_info.price_per_gallon__max|floatformat:2 }}</p>
+        <p>Lowest Price: ${{ gas_info.price_per_gallon__min|floatformat:2 }}</p>
+
+        {% if fuel_ups %}
+            <h2>Recent Fuel Ups</h2>
+            <ul>
+                {% for fuel_up in fuel_ups %}
+                    <li><a href="#">{{ fuel_up.date }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No recorded fuelups for vehicle.</a>
+        {% endif %}
+    {% else %}
+        Vehicle {{ vehicle.nickname }} does not exist
+    {% endif %}
+{% endblock %}

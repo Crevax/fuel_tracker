@@ -1,0 +1,23 @@
+{% extends 'fuel_tracker/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block main_content %}
+    {% if not user.is_authenticated %}
+        <h1>Hello guest!</h1>
+        <p>Please <a href="{% url 'main.login' %}">login</a> or <a href="{% url 'main.register' %}"> register!</a></p>
+    {% else %}
+        <h1>Hello {{ user.username }}!</h1>
+        <p><a href="{% url 'main.logout' %}">logout</a></p>
+        {% if vehicles %}
+            <h2>Vehicles</h2>
+            <ul>
+                {% for vehicle in vehicles %}
+                <li><a href="{% url 'vehicle.detail' user.username vehicle.nickname %}">{{ vehicle.nickname }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no vehicles present.</strong>
+        {% endif %}
+    {% endif %}       
+{% endblock %}

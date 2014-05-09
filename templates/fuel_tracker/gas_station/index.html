@@ -1,0 +1,12 @@
+<!-- vehicle_archives/templates/fuel_tracker/gas_company/index.html -->
+{% extends 'fuel_tracker/base.html' %}
+
+{% block title %}Gas Stations{% endblock %}
+
+{% block main_content %}
+    <ul class="actions">
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'gas_station.add' %}">New Gas Station</a></li>
+        {% endif %}
+    </li>
+{% endblock %}

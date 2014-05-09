@@ -1,0 +1,11 @@
+{% extends 'fuel_tracker/base.html' %}
+
+{% block title %}Fuel Ups{% endblock %}
+
+{% block main_content %}
+    <ul class="actions">
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'fuel_up.add' %}">New Fuel Up</a></li>
+        {% endif %}
+    </li>
+{% endblock %}

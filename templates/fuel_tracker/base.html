@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>{% block title %}Page{% endblock %} | Fuel Tracker</title>
+    </head>
+
+    <body>
+        {% block main_nav %}
+            <a href="{% url 'main.index' %}">Home</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'vehicle.index' %}">Vehicles</a>
+            <a href="{% url 'gas_company.index' %}">Gas Companies</a>
+            <a href="{% url 'gas_station.index' %}">Gas Stations</a>
+            <a href="{% url 'fuel_up.index' %}">Fuel Ups</a>
+            {% endif %}
+        {% endblock %}
+        {% block user_nav %}
+
+        {% endblock %}
+        {% block main_content %}Extend me!{% endblock %}
+    </body>
+</html>
