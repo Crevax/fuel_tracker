@@ -38,6 +38,7 @@ class FuelUp(models.Model):
     price_per_gallon    = models.DecimalField(decimal_places=3, max_digits=4)
     amount              = models.DecimalField(decimal_places=3, max_digits=5)
     miles_traveled      = models.DecimalField(decimal_places=1, max_digits=4)
+    complete_fill       = models.BooleanField(default=True)
     date                = models.DateField()
 
     @property
@@ -46,7 +47,7 @@ class FuelUp(models.Model):
 
     @property
     def mpg(self):
-        if( (self.miles_traveled / self.amount) == 0 ):
+        if( (self.miles_traveled / self.amount) == 0 or self.complete_fill == False ):
             return 'N/A'
         else:
             return self.miles_traveled / self.amount
