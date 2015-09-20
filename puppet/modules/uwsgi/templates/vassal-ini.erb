@@ -1,0 +1,6 @@
+[uwsgi]
+uid=www-data
+gid=www-data
+socket=/tmp/<%= @socket %>.sock
+chdir=/srv/www/<%= @project %>
+module=<%= @application %>.wsgi:application
